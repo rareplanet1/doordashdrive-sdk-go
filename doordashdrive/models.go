@@ -68,7 +68,7 @@ type AddressComponents struct {
 	SubPremise    string `json:"sub_premise,omitempty"`
 	City          string `json:"city,omitempty"`
 	State         string `json:"state,omitempty"`
-	ZipCode       int    `json:"zip_code,omitempty"`
+	ZipCode       string `json:"zip_code,omitempty"`
 	Country       string `json:"country,omitempty"`
 }
 
