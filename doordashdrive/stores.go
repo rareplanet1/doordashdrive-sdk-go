@@ -14,6 +14,11 @@ type StoreRequest struct {
 	Address            string `json:"address,omitempty"`
 }
 
+func (s *StoreRequest) ToString() (string, error) {
+	bytes, err := json.Marshal(s)
+	return string(bytes), err
+}
+
 type StoreResponse struct {
 	ExternalBusinessID string     `json:"external_business_id,omitempty"`
 	ExternalStoreID    string     `json:"external_store_id,omitempty"`
@@ -26,10 +31,20 @@ type StoreResponse struct {
 	LastUpdatedAt      *time.Time `json:"last_updated_at,omitempty"`
 }
 
+func (s *StoreResponse) ToString() (string, error) {
+	bytes, err := json.Marshal(s)
+	return string(bytes), err
+}
+
 type StoresResponse struct {
 	Result            []StoreResponse `json:"result"`
 	ContinuationToken string          `json:"continuation_token"`
 	ResultCount       int             `json:"result_count"`
+}
+
+func (s *StoresResponse) ToString() (string, error) {
+	bytes, err := json.Marshal(s)
+	return string(bytes), err
 }
 
 func (c *Client) GetStore(externalBusinessID string, externalStoreID string) (*StoreResponse, error) {

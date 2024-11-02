@@ -13,6 +13,11 @@ type BusinessRequest struct {
 	ActivationStatus   string `json:"activation_status,omitempty"`
 }
 
+func (b *BusinessRequest) ToString() (string, error) {
+	bytes, err := json.Marshal(b)
+	return string(bytes), err
+}
+
 type BusinessResponse struct {
 	ExternalBusinessID string                   `json:"external_business_id,omitempty"`
 	Name               string                   `json:"name,omitempty"`
@@ -24,10 +29,20 @@ type BusinessResponse struct {
 	ExternalMetadata   BusinessExternalMetadata `json:"external_metadata,omitempty"`
 }
 
+func (b *BusinessResponse) ToString() (string, error) {
+	bytes, err := json.Marshal(b)
+	return string(bytes), err
+}
+
 type BusinessesResponse struct {
 	Result            []BusinessResponse `json:"result"`
 	ContinuationToken string             `json:"continuation_token"`
 	ResultCount       int                `json:"result_count"`
+}
+
+func (b *BusinessesResponse) ToString() (string, error) {
+	bytes, err := json.Marshal(b)
+	return string(bytes), err
 }
 
 type BusinessExternalMetadata struct {

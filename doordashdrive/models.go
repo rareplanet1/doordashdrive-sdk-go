@@ -1,6 +1,9 @@
 package doordashdrive
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 type DeliveryRequest struct {
 	ExternalDeliveryID                 string                `json:"external_delivery_id"`
@@ -43,6 +46,11 @@ type DeliveryRequest struct {
 	DropoffCashOnDelivery              int                   `json:"dropoff_cash_on_delivery,omitempty"`
 	OrderRouteType                     string                `json:"order_route_type,omitempty"`
 	OrderRouteItems                    []string              `json:"order_route_items,omitempty"`
+}
+
+func (d *DeliveryRequest) ToString() (string, error) {
+	bytes, err := json.Marshal(d)
+	return string(bytes), err
 }
 
 type VerificationMetadata struct {
@@ -200,6 +208,11 @@ type DeliveryResponse struct {
 	DasherVehicleYear                  string               `json:"dasher_vehicle_year,omitempty"`
 }
 
+func (d *DeliveryResponse) ToString() (string, error) {
+	bytes, err := json.Marshal(d)
+	return string(bytes), err
+}
+
 type FeeComponent struct {
 	Type   string `json:"type,omitempty"`
 	Amount int    `json:"amount,omitempty"`
@@ -226,4 +239,9 @@ type DroppedItem struct {
 type AcceptQuoteRequest struct {
 	Tip                int    `json:"tip,omitempty"`
 	DropoffPhoneNumber string `json:"dropoff_phone_number,omitempty"`
+}
+
+func (a *AcceptQuoteRequest) ToString() (string, error) {
+	bytes, err := json.Marshal(a)
+	return string(bytes), err
 }
