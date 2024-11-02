@@ -64,11 +64,16 @@ type DropoffOptions struct {
 }
 
 type AddressComponents struct {
-	StreetAddress string `json:"street_address,omitempty"`
-	SubPremise    string `json:"sub_premise,omitempty"`
-	City          string `json:"city,omitempty"`
-	State         string `json:"state,omitempty"`
-	ZipCode       string `json:"zip_code,omitempty"`
+	StreetAddress string `json:"street_address,omitempty"` // Used to denote the street number and street name; multiple lines should be concatenated with a comma
+	SubPremise    string `json:"sub_premise,omitempty"`    // Used to denote the unit number, flat number, suite number, or apartment number
+	City          string `json:"city,omitempty"`           // US & CA only
+	SubLocality   string `json:"sub_locality,omitempty"`   // NZ only
+	Locality      string `json:"locality,omitempty"`       // AU & NZ only
+	State         string `json:"state,omitempty"`          // US only
+	Province      string `json:"province,omitempty"`       // CA only
+	Territory     string `json:"territory,omitempty"`      // AU only
+	ZipCode       string `json:"zip_code,omitempty"`       // US only
+	PostalCode    string `json:"postal_code,omitempty"`    // CA, AU, NZ only
 	Country       string `json:"country,omitempty"`
 }
 
